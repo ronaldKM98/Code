@@ -1,0 +1,9 @@
+//
+// Created by RONALD on 08/10/2016.
+//
+
+#ifndef SISTEMA_DE_TEXTO_PREDICTIVO_LEERARR_H
+#define SISTEMA_DE_TEXTO_PREDICTIVO_LEERARR_H
+#pragma once
+void leerArr();
+#endif //SISTEMA_DE_TEXTO_PREDICTIVO_LEERARR_H
