@@ -1,9 +1,6 @@
-all: Sistema-de-texto-predictivo
-
-Sistema-de-texto-predictivo: Main.o LeerArr.o
+Sistema-de-texto-predictivo: Main.o
 	$(CXX) -o $@ $^
 
-	Main.o: Main.cpp
-
-	LeerArr.o: LeerArr.cpp LeerArr.h		
+clean:
+	rm -f *.cpp~ *.o
 

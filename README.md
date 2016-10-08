@@ -1,1 +1,0 @@
-# Sistema-de-texto-predictivo

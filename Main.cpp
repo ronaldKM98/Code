@@ -3,9 +3,12 @@
 //
 #include <iostream>
 #include "LeerArr.h"
+#include <string>
 using namespace std;
 
 int main () {
-    leerArr ();
+	int TAM = 354985;
+    leerArr();
+    
   return 0;
 }
