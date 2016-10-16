@@ -1,0 +1,8 @@
+#include "NodoTrie.h"
+
+struct NodeTrie {
+  char c;
+  bool word;
+  NodeTrie left;
+  NodeTrie rigth;
+}

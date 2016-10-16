@@ -1,0 +1,9 @@
+#include <iostream>
+#include <stdio.h>
+struct Node {
+  bool word;
+  struct Node left;
+  struct Node rigth;
+  
+}
+  
