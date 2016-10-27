@@ -1,0 +1,34 @@
+Interpretado
+Imperativo
+Orientado a objetos
+
+
+Sistema de tipos dinamicos
+Variable esta asociada a un tipo. No hay declaraciones.
+
+ruby
+#debajo va el programa
+
+o en emacs como siempre.
+
+REPL
+Read
+Evaluate
+Print
+Loop
+
+irb es el interpretador
+se llama a load y un "nombre de archivo" para ejecutar programas dentro de irb.
+
+El creador de ruby trajo de SMALTALK la caracteristica de que todo es un objeto, se
+puede crear una variable y consultar sus metodos con .methods y la clase a la que pertenece con .class
+
+en ruby no hay operadores, todo son funciones que trabajan como metodos de un objeto numero. (10 + 20) == (10.+(20))
+												10 + 3 * 2 == 10.+(3.*(2))
+
+Los objetos en ruby son inmutables, no se puenden cambiar. 
+Los metodos que terminan con (!) son mutables, los que terminan en (?) devuelven un booleano.
+
+PARA EJECUTAR Y PARA ENVIAR
+desde emacs metacomando inf-ruby
+			ruby-send-definition
