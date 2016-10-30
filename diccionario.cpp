@@ -14,8 +14,8 @@ using namespace std;
 bool load (char* dictionary);
 bool search (char word [], Node* actual);
 void autocomplete (char* str);
-bool unload (void);
-void unloader (Node* cursor);
+//bool unload (void);
+//void unloader (Node* cursor);
 unsigned int getSize (void);
 Node* root;
 int MAX = 256;
@@ -57,7 +57,7 @@ bool load (char* dictionary) {
   //calloc devuelve void* que se puede pasar a cualquier tipo
   root = (Node*) calloc(1, sizeof(Node));
     if (root == NULL) {
-      unload();
+      //unload();
       fclose (filePtr);
       return false;
     }    
@@ -79,7 +79,7 @@ bool load (char* dictionary) {
       if (cursor->arr[index] == NULL) {
         cursor->arr[index] = (Node*) calloc (1, sizeof(Node));
           if (cursor->arr[index] == NULL) { //sigue siendo nulo
-              unload();
+  //            unload();
               fclose(filePtr);
               return false;
           }
@@ -97,7 +97,7 @@ bool load (char* dictionary) {
   }
   //es posible que hallan errores en la lectura
     if (ferror(filePtr)) {
-      unload();
+    //  unload();
       fclose(filePtr);
       return false;
     }
@@ -157,20 +157,20 @@ void autocomplete (char* str) {
   } 
 }
 
-bool unload (void) {
-  unloader(root);
-  return true;
-}
+//bool unload (void) {
+  //unloader(root);
+//  return true;
+//}
 
-void unloader (Node* cursor) {
+//void unloader (Node* cursor) {
   //Esta funcion va a liberar la memoria usada por el programa
-  for (int i = 0; i < ALPHABET; i++) {
-    if (cursor->arr[i] != NULL) {
-      unloader(cursor->arr[i]);
-    }
-  }
-  free(cursor);
-}
+  //for (int i = 0; i < ALPHABET; i++) {
+    //if (cursor->arr[i] != NULL) {
+      //unloader(cursor->arr[i]);
+    //}
+  //}
+  //free(cursor);
+//}
 
 unsigned int getSize (void) {
   return dictionary_size;
