@@ -14,7 +14,8 @@ using namespace std;
 bool load (char* dictionary);
 bool search (char word [], Node* actual);
 void autocomplete (char* str);
-void insert (void);
+bool unload (void);
+void unloader (Node* cursor);
 unsigned int getSize (void);
 Node* root;
 int MAX = 256;
@@ -23,7 +24,7 @@ char chars [ALPHABET] = {'/', 39, '&',
      'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
                  48,49,50,51,52,53,54,55,56,57};
 
-int main () {
+int main (void) {
   // en el main ninguna funcion puede ser llamada antes de load
   // si se hace va a sacar error!
   char* dictionary;
@@ -56,6 +57,7 @@ bool load (char* dictionary) {
   //calloc devuelve void* que se puede pasar a cualquier tipo
   root = (Node*) calloc(1, sizeof(Node));
     if (root == NULL) {
+      unload();
       fclose (filePtr);
       return false;
     }    
@@ -77,7 +79,7 @@ bool load (char* dictionary) {
       if (cursor->arr[index] == NULL) {
         cursor->arr[index] = (Node*) calloc (1, sizeof(Node));
           if (cursor->arr[index] == NULL) { //sigue siendo nulo
-              //    unload();
+              unload();
               fclose(filePtr);
               return false;
           }
@@ -95,7 +97,7 @@ bool load (char* dictionary) {
   }
   //es posible que hallan errores en la lectura
     if (ferror(filePtr)) {
-      //unload();
+      unload();
       fclose(filePtr);
       return false;
     }
@@ -151,8 +153,23 @@ void autocomplete (char* str) {
   //Ya tenemos el nodo donde se termina la cadena
   //ahora hay que imprimir todo el arbol que hay debajo de ese nodo;
   for (int i = 0; i < ALPHABET; i++) {
-    
+
   } 
+}
+
+bool unload (void) {
+  unloader(root);
+  return true;
+}
+
+void unloader (Node* cursor) {
+  //Esta funcion va a liberar la memoria usada por el programa
+  for (int i = 0; i < ALPHABET; i++) {
+    if (cursor->arr[i] != NULL) {
+      unloader(cursor->arr[i]);
+    }
+  }
+  free(cursor);
 }
 
 unsigned int getSize (void) {
