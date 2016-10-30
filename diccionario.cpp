@@ -12,8 +12,8 @@
 using namespace std;
 
 bool load (char* dictionary);
-bool search (char word []);
-void print (Node* cursor);
+bool search (char word [], Node* actual);
+void autocomplete (char* str);
 void insert (void);
 unsigned int getSize (void);
 Node* root;
@@ -24,6 +24,8 @@ char chars [ALPHABET] = {'/', 39, '&',
                  48,49,50,51,52,53,54,55,56,57};
 
 int main () {
+  // en el main ninguna funcion puede ser llamada antes de load
+  // si se hace va a sacar error!
   char* dictionary;
   if (load(dictionary)) {
     //cout << "Cargo " << getSize() << " palabras" << endl;
@@ -32,8 +34,9 @@ int main () {
   }
 
   char word [MAX + 1];
-  cin.getline(word, MAX); 
-  if (search(&word[0])) {
+  cin.getline(word, MAX);
+  Node* act;
+  if (search(&word[0], act)) {
     cout << "true" << endl;
   }else {
     cout << "false" << endl;
@@ -103,8 +106,10 @@ bool load (char* dictionary) {
 }
 
 
-bool search (char* word) {
+bool search (char* word, Node* actual) {
   //Esta funcion busca una palabra en la estructura
+  //el parametro Node* es para que nos devuelva el nodo final de la busqueda ind/
+  // de si fue exitosa o  no. Para poder continuar con la funcion autocompletar
   Node* cursor = root;
   int index;
 //Recorrer la palabra caracter a caracter
@@ -114,11 +119,11 @@ bool search (char* word) {
       //char caracter = tolower(word[i]);
         if (tolower(word[i]) == chars[j]) {
           index = j;
-          cout << index << endl;
+          //cout << index << endl;
           break;
         }
     }
-          //Si el siguiente nodo que deberia existir
+          // el siguiente nodo que deberia existir
           //no existe, entonces no hay palabra
           if (cursor->arr[index] == NULL) {
             //cout << "No existe el nodo" << endl;
@@ -129,27 +134,26 @@ bool search (char* word) {
           }
   }
 
-    //Se termino la palabra
+  //Se termino la palabra
   //retornamos el valor booleano de la posicion actual
   //cout << cursor->word << endl;
-  return cursor->word;
+   actual = cursor;
+   if (cursor->word) {
+    cursor->frecuencia += 1;
+    return true;
+   }
 }
 
-void print (Node* cursor) {
-  int index = 0;
-  cursor = root->arr[index];
-  string word = "";
+void autocomplete (char* str) {
+  int index;
+  Node* cursor; 
+  search(&str[0], cursor);
+  //Ya tenemos el nodo donde se termina la cadena
+  //ahora hay que imprimir todo el arbol que hay debajo de ese nodo;
   for (int i = 0; i < ALPHABET; i++) {
-      if (cursor->arr[i] != NULL) {
-        word += cursor->c;
-        if (cursor->word) {
-          cout << word << endl;
-        }
-      }
-    print(cursor->arr[i]);
-  }
+    
+  } 
 }
-
 
 unsigned int getSize (void) {
   return dictionary_size;
