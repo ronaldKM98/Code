@@ -1,36 +1,48 @@
-//El fuckin' bug es: que no acepta palabras largas
+#include "diccionario.h"
 #include <iostream>
 #include <stdio.h>
+#include <cctype>
 #include <stdlib.h>
-#include "diccionario.h"
 #include <cstdio>
+#include <string.h>
+#include <string>
 #include <fstream>
-#define ALPHABET 66
+#define ALPHABET 39
 
 using namespace std;
 
 bool load (char* dictionary);
+bool search (char word []);
+void print (Node* cursor);
 void insert (void);
 unsigned int getSize (void);
 Node* root;
+int MAX = 256;
 int dictionary_size = 0;
 char chars [ALPHABET] = {'/', 39, '&',
      'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
-     'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
                  48,49,50,51,52,53,54,55,56,57};
-
 
 int main () {
   char* dictionary;
   if (load(dictionary)) {
-    cout << "Cargooooooooo! FUCKKKK" << endl;
-    return 0;
+    //cout << "Cargo " << getSize() << " palabras" << endl;
+  }else {
+    //cout << "Error cargando" << endl;
   }
-  cout << "FALSE" << endl;
-  return 0;
+
+  char word [MAX + 1];
+  cin.getline(word, MAX); 
+  if (search(&word[0])) {
+    cout << "true" << endl;
+  }else {
+    cout << "false" << endl;
+  }
 }
 
+
 bool load (char* dictionary) {
+  //Esta funcion carga todo el diccionario en el trie cuando ejecutamos el programa.
   FILE* filePtr;
   filePtr = fopen ("words.txt", "r");
   if (filePtr == NULL) {
@@ -43,49 +55,101 @@ bool load (char* dictionary) {
     if (root == NULL) {
       fclose (filePtr);
       return false;
-    }
+    }    
 
   Node* cursor = root;
   int index;
   //Recorre el archivo caracter a caracter
-  for (int c = fgetc(filePtr); c != -1; c = fgetc(filePtr)) {
+  for (char caracter = fgetc(filePtr); caracter != -1; caracter = fgetc(filePtr)) {
+    caracter = tolower(caracter);
     //si caracter es /n es porque hay una palabra sino ...
-    if (c != '\n') {
+    if (caracter != '\n') {
       //OJO
       for (int i = 0; i < ALPHABET; i++) {
-  if (c == chars[i]) {
-    index =  c;
-  }
+          if (caracter == chars[i]) {
+            index = i;
+          }
       }
       // si el nodo es nulo, hay que crear uno nuevo
       if (cursor->arr[index] == NULL) {
-  cursor->arr[index] = (Node*) calloc (1, sizeof(Node));
-  if (cursor->arr[index] == NULL) { //Si no nos reserva memoria
-    //    unload();
-    fclose(filePtr);
-    return false;
-  }
+        cursor->arr[index] = (Node*) calloc (1, sizeof(Node));
+          if (cursor->arr[index] == NULL) { //sigue siendo nulo
+              //    unload();
+              fclose(filePtr);
+              return false;
+          }
+        cursor->c = caracter;
+        cursor->frecuencia = 0;
       }
-      //si el nodo no es nulo es porque el subTrie existe, entonces no hay que crearlo
-      //Es como padar al siguiente nodo (nodo++)
+      // Si el nodo no es nulo es porque el subTrie existe, entonces no hay que crearlo
+      // Es como pasar al siguiente nodo (nodo++)
       cursor = cursor->arr[index];
     }else { //es /n, entonces hay una nueva palabra
-      cout << "Creando palabra " << dictionary_size << endl;
       cursor->word = true;
       cursor = root;
-      dictionary_size++;
+      ++dictionary_size;
     }
   }
   //es posible que hallan errores en la lectura
-  if (ferror(filePtr)) {
-    //unload();
-    fclose(filePtr);
-    return false;
-  }
+    if (ferror(filePtr)) {
+      //unload();
+      fclose(filePtr);
+      return false;
+    }
+
   //Terminamos de leer. Cerramos el archivo. :D
   fclose(filePtr);
   return true;
 }
+
+
+bool search (char* word) {
+  //Esta funcion busca una palabra en la estructura
+  Node* cursor = root;
+  int index;
+//Recorrer la palabra caracter a caracter
+  for (int i = 0; i < strlen(word); i++) {
+      //hallar el indice del caracter en el arreglo de caracteres
+    for (int j = 0; j < ALPHABET; j++) {
+      //char caracter = tolower(word[i]);
+        if (tolower(word[i]) == chars[j]) {
+          index = j;
+          cout << index << endl;
+          break;
+        }
+    }
+          //Si el siguiente nodo que deberia existir
+          //no existe, entonces no hay palabra
+          if (cursor->arr[index] == NULL) {
+            //cout << "No existe el nodo" << endl;
+              return false;
+          }else {
+            //cout << "Si existe, entonces vamos a ese nodo" << endl;
+            cursor = cursor->arr[index];
+          }
+  }
+
+    //Se termino la palabra
+  //retornamos el valor booleano de la posicion actual
+  //cout << cursor->word << endl;
+  return cursor->word;
+}
+
+void print (Node* cursor) {
+  int index = 0;
+  cursor = root->arr[index];
+  string word = "";
+  for (int i = 0; i < ALPHABET; i++) {
+      if (cursor->arr[i] != NULL) {
+        word += cursor->c;
+        if (cursor->word) {
+          cout << word << endl;
+        }
+      }
+    print(cursor->arr[i]);
+  }
+}
+
 
 unsigned int getSize (void) {
   return dictionary_size;

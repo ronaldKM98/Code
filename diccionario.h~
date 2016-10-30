@@ -1,6 +1,0 @@
-#pragma once
-typedef struct Node {
-  struct Node* left;
-  struct Node* rigth;
-}
-  Node;

@@ -6,3 +6,4 @@ diccionario.o: diccionario.cpp diccionario.h
 clean:
 	rm -f *.cpp~ *.o
 
+ 
