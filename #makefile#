@@ -1,9 +1,0 @@
-all:	$(CXX) -o $@ $^
-
-Main.o: Main.cpp LeerArr.h
-
-LeerArr.o: LeerArr.h LeerArr.cpp
-
-clean:
-	rm -f *.cpp~ *.o
-

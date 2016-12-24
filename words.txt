@@ -126061,7 +126061,10 @@ gyve
 gyved
 gyves
 gyving
-h
+
+habaneras
+habble
+habbubh
 h'm
 h's
 ha
@@ -126080,9 +126083,6 @@ hab
 habaera
 habakkuk
 habanera
-habaneras
-habble
-habbub
 habdalah
 habdalahs
 habeas
