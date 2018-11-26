@@ -1,0 +1,59 @@
+#include<map>
+#include<string> 
+
+class cards {
+    map<string, int> cards;
+
+    cards["AD"] = 1;
+    cards["2D"] = 2;
+    cards["3D"] = 3;
+    cards["4D"] = 4;
+    cards["5D"] = 5;
+    cards["6D"] = 6;
+    cards["7D"] = 7;
+    cards["8D"] = 8;
+    cards["9D"] = 9;
+    cards["TD"] = 10;
+    cards["JD"] = 11;
+    cards["QD"] = 12;
+    cards["KD"] = 13;
+    cards["AC"] = 14;
+    cards["2C"] = 15;
+    cards["3C"] = 16;
+    cards["4C"] = 17;
+    cards["5C"] = 18;
+    cards["6C"] = 19;
+    cards["7C"] = 20;
+    cards["8C"] = 21;
+    cards["9C"] = 22;
+    cards["TC"] = 23;
+    cards["JC"] = 24;
+    cards["QC"] = 25;
+    cards["KC"] = 26;
+    cards["AH"] = 27;
+    cards["2H"] = 28;
+    cards["3H"] = 29;
+    cards["4H"] = 30;
+    cards["5H"] = 31;
+    cards["6H"] = 32;
+    cards["7H"] = 33;
+    cards["8H"] = 34;
+    cards["9H"] = 35;
+    cards["TH"] = 36;
+    cards["JH"] = 37;
+    cards["QH"] = 38;
+    cards["KH"] = 39;
+    cards["AS"] = 40;
+    cards["2S"] = 41;
+    cards["3S"] = 42;
+    cards["4S"] = 43;
+    cards["5S"] = 44;
+    cards["6S"] = 45;
+    cards["7S"] = 46;
+    cards["8S"] = 47;
+    cards["9S"] = 48;
+    cards["TS"] = 49;
+    cards["JS"] = 50;
+    cards["QS"] = 51;
+    cards["KS"] = 52;
+}
