@@ -115,24 +115,24 @@ int main() {
                 
                 if(cards[hand[i]] < 14) {
                     if(diamonds == 0) {
-                        points--;
+                        --points;
                     }else {
                         stopd = true;
                     }
                 }else if(cards[hand[i]] < 27) {
                     if(clubs == 0) {
-                        points--;
+                        --points;
                     } else {
                         stopc = true;
                     }
                 }else if(cards[hand[i]] < 40) {
                     if(hearts == 0) {
-                        points--;
+                        --points;
                     } else {
                         stoph = true;
                     }
                 } else if(spades == 0) {
-                    points--;
+                    --points;
                 } else {
                     stops = true;
                 }
@@ -143,24 +143,24 @@ int main() {
 
                 if(cards[hand[i]] < 14) {
                     if(diamonds <= 1) {
-                        points--;
+                        --points;
                     } else {
                         stopd = true;
                     }
                 }else if(cards[hand[i]] < 27) {
                     if(clubs <= 1) {
-                        points--;
+                        --points;
                     } else {
                         stopc = true;
                     }
                 }else if(cards[hand[i]] < 40) {
                     if(hearts <= 1) {
-                        points--;
+                        --points;
                     } else {
                         stoph = true;
                     }
                 } else if(spades <= 1) {
-                    points--;
+                    --points;
                 } else {
                     stops = true;
                 }
@@ -170,18 +170,18 @@ int main() {
                     points += 1;
 
                 if(cards[hand[i]] < 14 && diamonds <= 2) {
-                    points--;
+                    --points;
                 }else if(cards[hand[i]] < 27 && clubs <= 2) {
-                    points--;
+                    --points;
                 }else if(cards[hand[i]] < 40 && hearts <= 2) {
-                    points--;
+                    --points;
                 } else if(spades <= 2) {
-                    points--;
+                    --points;
                 }
             }
         }        
 
-        //printf("The hand has %d points", points);
+        //printf("The hand has %d points\n", points);
         if(points >= 16 && stopc && stopd && stoph && stops) {
             printf("BID NO-TRUMP\n");
         } else {
@@ -194,7 +194,7 @@ int main() {
             if(spades == 2) points += 1;
             if(clubs == 2) points += 1;
             if(diamonds == 2) points += 1;
-            //printf("Now the hand has %d points", points);
+            //printf("Now the hand has %d points\n", points);
             if(points < 14) {
                 printf("PASS\n");
             } else {

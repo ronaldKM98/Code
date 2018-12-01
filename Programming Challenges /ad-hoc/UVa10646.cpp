@@ -81,7 +81,8 @@ main() {
         for (int i = 0; i < 3; i++) {
 	        int x = cards[pile.top()];
             y = y + x;
-            for (int j = 0; j < 10 - x + 1; j++) pile.pop();
+            pile.pop();
+            for (int j = 0; j < 10 - x; j++) pile.pop();
         }
         for (int i = 0; i < 25; i++) pile.push(hand[i]);
         while(pile.size() > y) pile.pop();
