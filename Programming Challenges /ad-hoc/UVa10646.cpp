@@ -72,7 +72,7 @@ main() {
             cin >> s;
             pile.push(s);
         }
-        string hand [25];
+        string hand [30];
         for (int i = 0; i < 25; i++) {
 	        hand[24 - i] = pile.top();
 	        pile.pop();
