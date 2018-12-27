@@ -1,10 +1,10 @@
 package com.DesignPatterns.AbstractFactory;
 
-public class Room extends MapSite {
-    public Room(int roomno) {
-        this._roomNumber = roomno;
+public class RoomWithABomb extends Room {
+    public RoomWithABomb(int roomno) {
+        super(roomno);
     }
-    public MapSite getSide(Direction dir) {
+    public MapSite getSide(Direction dir){
         if(dir == Direction.North) return _sides[0];
         else if(dir == Direction.South) return _sides[1];
         else if(dir == Direction.East) return _sides[2];
@@ -19,11 +19,10 @@ public class Room extends MapSite {
     }
 
     public int getRoomNo() {
-        return _roomNumber;
+        return super._roomNumber;
     }
 
     public void enter(){};
 
     private MapSite _sides[] = new MapSite[4];
-    protected int _roomNumber;
 }

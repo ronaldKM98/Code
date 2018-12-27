@@ -14,4 +14,12 @@ public class Maze {
     }
 
     private ArrayList<Room> rooms = new ArrayList<Room>();
+
+    public String toString() {
+        String res = "";
+        for(Room room: rooms) {
+            res += Integer.toString(room.getRoomNo()) + '\n';
+        }
+        return res;
+    }
 }
