@@ -1,5 +1,8 @@
 package com.DesignPatterns.AbstractFactory;
-
+/**
+ * This class is just a collection of factory methods that build the maze's
+ * components
+ */
 public class MazeFactory {
     public MazeFactory(){};
     
