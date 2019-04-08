@@ -6,8 +6,8 @@
     <groupId>com.DesignPatterns</groupId>
     <artifactId>DesignPatterns</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>java-project</name>
+    <version>0.0.1</version>
+    <name>DesignPatterns</name>
     <url>http://maven.apache.org</url>
 
     <properties>

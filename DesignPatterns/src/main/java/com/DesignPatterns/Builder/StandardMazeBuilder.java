@@ -1,5 +1,7 @@
 package com.DesignPatterns.Builder;
 
+/** Specific implementation of MazeBuilder
+ * Only one maze at a time, no reentrant */
 public class StandardMazeBuilder extends MazeBuilder {
     public StandardMazeBuilder() {
         currentMaze = null;
@@ -9,9 +11,9 @@ public class StandardMazeBuilder extends MazeBuilder {
         currentMaze = new Maze();
     }
 
-    public void buildRoom(int roomno){
+    public void buildRoom(int roomNumber) {
         if(currentMaze != null) {
-            Room room = new Room(roomno);
+            Room room = new Room(roomNumber);
             currentMaze.addRoom(room);
 
             room.setSide(Direction.North, new Wall());
@@ -21,7 +23,7 @@ public class StandardMazeBuilder extends MazeBuilder {
         }
     }
     
-    public void buildDoor(int roomFrom, int roomTo){
+    public void buildDoor(int roomFrom, int roomTo) {
         Room r1 = currentMaze.roomNo(roomFrom);
         Room r2 = currentMaze.roomNo(roomTo);
         Door door = new Door(r1, r2);

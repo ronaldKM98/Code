@@ -1,4 +1,4 @@
-package com.DesignPatterns.AbstractFactory;
+package com.DesignPatterns.FactoryMethod;
 
 public class Door extends MapSite {
     public Door(Room a, Room b) {

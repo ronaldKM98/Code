@@ -1,8 +1,28 @@
-package com.DesignPatterns.Builder;
+package com.DesignPatterns.Prototype;
+
 
 public class Room extends MapSite {
+    public Room(){}
+
     public Room(int roomNumber) {
         this.roomNumber = roomNumber;
+    }
+
+    public Room(Room that) {
+        this.roomNumber = that.roomNumber;
+        this.sides = that.sides;
+    }
+
+    private MapSite sides[] = new MapSite[4];
+    protected int roomNumber;
+
+    public void initialize(int roomNumber) {
+        this.roomNumber = roomNumber;
+        this.sides = new MapSite[4];
+    }
+
+    public Room clone() {
+        return new Room(this);
     }
 
     public MapSite getSide(Direction dir) {
@@ -24,7 +44,4 @@ public class Room extends MapSite {
     }
 
     public void enter(){};
-
-    private MapSite sides[] = new MapSite[4];
-    protected int roomNumber;
 }

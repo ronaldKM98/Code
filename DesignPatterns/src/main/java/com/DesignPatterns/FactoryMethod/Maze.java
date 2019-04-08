@@ -1,9 +1,9 @@
-package com.DesignPatterns.AbstractFactory;
+package com.DesignPatterns.FactoryMethod;
 
 import java.util.ArrayList;
 
 public class Maze {
-    public Maze(){};
+    public Maze(){}
 
     private ArrayList<Room> rooms = new ArrayList<Room>();
 

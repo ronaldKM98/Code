@@ -1,15 +1,16 @@
 package com.DesignPatterns.Builder;
 
 import java.util.ArrayList;
+
 public class Maze {
     public Maze(){};
     public void addRoom(Room a){
         rooms.add(a);
     }
 
-    public Room roomNo(int roomno){
+    public Room roomNo(int roomNumber){
         for (Room room : rooms) {
-            if (room.getRoomNo() == roomno) return room;
+            if (room.getRoomNo() == roomNumber) return room;
         }
         return null;
     }

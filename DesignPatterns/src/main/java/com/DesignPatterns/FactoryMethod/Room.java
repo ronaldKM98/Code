@@ -1,9 +1,12 @@
-package com.DesignPatterns.Builder;
+package com.DesignPatterns.FactoryMethod;
 
 public class Room extends MapSite {
     public Room(int roomNumber) {
         this.roomNumber = roomNumber;
     }
+
+    private MapSite sides[] = new MapSite[4];
+    protected int roomNumber;
 
     public MapSite getSide(Direction dir) {
         if(dir == Direction.North) return sides[0];
@@ -24,7 +27,4 @@ public class Room extends MapSite {
     }
 
     public void enter(){};
-
-    private MapSite sides[] = new MapSite[4];
-    protected int roomNumber;
 }

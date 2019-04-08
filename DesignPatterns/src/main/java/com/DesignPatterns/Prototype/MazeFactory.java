@@ -1,10 +1,11 @@
-package com.DesignPatterns.AbstractFactory;
+package com.DesignPatterns.Prototype;
+
 /**
  * This class is just a collection of factory methods that create
  * components to build the maze.
  */
 public class MazeFactory {
-    public MazeFactory(){};
+    public MazeFactory(){}
 
     public Maze makeMaze() {
         return new Maze();

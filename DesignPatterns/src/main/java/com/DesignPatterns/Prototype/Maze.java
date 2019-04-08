@@ -1,11 +1,17 @@
-package com.DesignPatterns.AbstractFactory;
+package com.DesignPatterns.Prototype;
 
 import java.util.ArrayList;
 
 public class Maze {
-    public Maze(){};
+    public Maze(){}
+
+    public Maze(Maze that){}
 
     private ArrayList<Room> rooms = new ArrayList<Room>();
+
+    public Maze clone() {
+        return new Maze(this);
+    }
 
     public void addRoom(Room a){
         rooms.add(a);

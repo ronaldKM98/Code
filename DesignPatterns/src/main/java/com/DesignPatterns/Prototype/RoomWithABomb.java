@@ -1,11 +1,27 @@
-package com.DesignPatterns.AbstractFactory;
+package com.DesignPatterns.Prototype;
 
 public class RoomWithABomb extends Room {
+    public RoomWithABomb(){}
+
+    public RoomWithABomb(RoomWithABomb that){
+        super.roomNumber = that.roomNumber;
+        this.sides = that.sides;
+    }
+
     public RoomWithABomb(int roomNumber) {
         super(roomNumber);
     }
 
     private MapSite sides[] = new MapSite[4];
+
+    public void initialize(int roomNumber) {
+        super.roomNumber = roomNumber;
+        this.sides = new MapSite[4];
+    }
+
+    public Room clone() {
+        return new RoomWithABomb(this);
+    }
 
     public MapSite getSide(Direction dir){
         if(dir == Direction.North) return sides[0];

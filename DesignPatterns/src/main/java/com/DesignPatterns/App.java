@@ -1,13 +1,16 @@
 package com.DesignPatterns;
-//import com.DesignPatterns.AbstractFactory.*;
-import com.DesignPatterns.Builder.*;
-public class App 
+
+//import com.DesignPatterns.Builder.*;
+import com.DesignPatterns.FactoryMethod.MazeGame;
+import com.DesignPatterns.Prototype.*;
+
+public class App
 {
     public static void main( String[] args ) {
-        builder();
+        prototype();
     }
 
-    public static void countingBuilder(){
+    /*public static void countingBuilder() {
         MazeGame game = new MazeGame();
         CountingMazeBuilder builder = new CountingMazeBuilder();
 
@@ -19,7 +22,7 @@ public class App
         System.out.println(res);
     }
 
-    public static void builder(){
+    public static void builder() {
         Maze maze;
         MazeGame game = new MazeGame();
         StandardMazeBuilder builder = new StandardMazeBuilder();
@@ -37,4 +40,13 @@ public class App
         Maze m = game.createMaze(factory);
         System.out.println(m.toString());
     }*/
+
+    public static void prototype() {
+        MazeGame game;
+        MazePrototypeFactory simpleMazeFactory =
+                new MazePrototypeFactory(new Maze(), new Wall(), new Room(), new Door());
+
+        MazePrototypeFactory bombed =
+                new MazePrototypeFactory(new Maze(), new BombedWall(), new RoomWithABomb(), new Door());
+    }
 }
